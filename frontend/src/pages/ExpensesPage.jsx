@@ -52,7 +52,7 @@ export default function ExpensesPage() {
 
   const totalExpenses = expenses.reduce((s, e) => s + (parseFloat(e.amount) || 0), 0);
   const avgDaily = expenses.length > 0 ? totalExpenses / new Date(filterYear, filterMonth, 0).getDate() : 0;
-  const formatCurrency = (v) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(v || 0);
+  const formatCurrency = (v) => new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' }).format(v || 0);
 
   const getCategoryName = (id) => categories.find((c) => c.id === id)?.name || 'N/A';
   const getAccountName = (id) => accounts.find((a) => a.id === id)?.name || 'N/A';
@@ -114,8 +114,8 @@ export default function ExpensesPage() {
   return (
     <div className="page">
       <div className="page__summary">
-        <FinancialCard icon="$" value={formatCurrency(totalExpenses)} label="Total Expenses This Month" color="danger" />
-        <FinancialCard icon="$" value={formatCurrency(avgDaily)} label="Average Daily Expense" color="gold" />
+        <FinancialCard icon="₱" value={formatCurrency(totalExpenses)} label="Total Expenses This Month" color="danger" />
+        <FinancialCard icon="₱" value={formatCurrency(avgDaily)} label="Average Daily Expense" color="gold" />
       </div>
 
       <div className="page__filters">

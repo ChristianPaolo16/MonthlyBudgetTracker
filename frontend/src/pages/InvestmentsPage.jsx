@@ -40,7 +40,7 @@ export default function InvestmentsPage() {
   const totalValue = investments.reduce((s, i) => s + (parseFloat(i.currentValue) || 0), 0);
   const totalReturns = totalValue - totalInvested;
   const activeCount = investments.filter((i) => i.status === 'ACTIVE').length;
-  const formatCurrency = (v) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(v || 0);
+  const formatCurrency = (v) => new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' }).format(v || 0);
   const formatPct = (v) => v != null ? `${parseFloat(v).toFixed(2)}%` : 'N/A';
 
   const openAdd = () => { setEditing(null); setFormData(emptyForm); setModalOpen(true); };
@@ -103,9 +103,9 @@ export default function InvestmentsPage() {
   return (
     <div className="page">
       <div className="page__summary">
-        <FinancialCard icon="$" value={formatCurrency(totalInvested)} label="Total Invested" color="primary" />
-        <FinancialCard icon="$" value={formatCurrency(totalValue)} label="Current Value" color="gold" />
-        <FinancialCard icon="$" value={formatCurrency(totalReturns)} label="Total Returns" color={totalReturns >= 0 ? 'success' : 'danger'} />
+        <FinancialCard icon="₱" value={formatCurrency(totalInvested)} label="Total Invested" color="primary" />
+        <FinancialCard icon="₱" value={formatCurrency(totalValue)} label="Current Value" color="gold" />
+        <FinancialCard icon="₱" value={formatCurrency(totalReturns)} label="Total Returns" color={totalReturns >= 0 ? 'success' : 'danger'} />
         <FinancialCard icon="#" value={activeCount} label="Active Investments" color="primary" />
       </div>
 

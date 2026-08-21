@@ -51,7 +51,7 @@ export default function IncomePage() {
   useEffect(() => { fetchAll(); }, [fetchAll]);
 
   const totalIncome = incomes.reduce((s, i) => s + (parseFloat(i.amount) || 0), 0);
-  const formatCurrency = (v) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(v || 0);
+  const formatCurrency = (v) => new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' }).format(v || 0);
 
   const getCategoryName = (id) => categories.find((c) => c.id === id)?.name || 'N/A';
   const getAccountName = (id) => accounts.find((a) => a.id === id)?.name || 'N/A';
@@ -101,7 +101,7 @@ export default function IncomePage() {
   return (
     <div className="page">
       <div className="page__summary">
-        <FinancialCard icon="$" value={formatCurrency(totalIncome)} label="Total Income This Month" color="success" />
+        <FinancialCard icon="₱" value={formatCurrency(totalIncome)} label="Total Income This Month" color="success" />
       </div>
 
       <div className="page__filters">

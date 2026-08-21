@@ -8,7 +8,7 @@ import { getDashboardSummary, getExpenseSummary, getIncomeSummary, getMonthlyExp
 const COLORS = ['#c9a962', '#1a2332', '#2c3e50', '#34495e', '#27ae60', '#e74c3c', '#3498db', '#9b59b6', '#e67e22', '#1abc9c'];
 
 const formatCurrency = (value) => {
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value || 0);
+  return new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' }).format(value || 0);
 };
 
 export default function DashboardPage() {
@@ -89,25 +89,25 @@ export default function DashboardPage() {
     <div className="dashboard-page">
       <div className="dashboard__cards">
         <FinancialCard
-          icon="$"
+          icon="₱"
           value={formatCurrency(summary.totalIncome)}
           label="Total Income"
           color="success"
         />
         <FinancialCard
-          icon="$"
+          icon="₱"
           value={formatCurrency(summary.totalExpenses)}
           label="Total Expenses"
           color="danger"
         />
         <FinancialCard
-          icon="$"
+          icon="₱"
           value={formatCurrency(summary.netSavings)}
           label="Net Savings"
           color="primary"
         />
         <FinancialCard
-          icon="$"
+          icon="₱"
           value={formatCurrency(summary.totalInvestments)}
           label="Total Investments"
           color="gold"
@@ -180,7 +180,7 @@ export default function DashboardPage() {
               <BarChart data={monthlyExpenses} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#ecf0f1" />
                 <XAxis dataKey="month" tick={{ fontSize: 13, fill: '#2c3e50' }} />
-                <YAxis tick={{ fontSize: 13, fill: '#2c3e50' }} tickFormatter={(v) => `$${v}`} />
+                <YAxis tick={{ fontSize: 13, fill: '#2c3e50' }} tickFormatter={(v) => `₱${v}`} />
                 <Tooltip formatter={(value) => formatCurrency(value)} />
                 <Bar dataKey="amount" fill="#c9a962" radius={[4, 4, 0, 0]} />
               </BarChart>

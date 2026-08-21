@@ -6,9 +6,9 @@ import FinancialCard from '../components/FinancialCard';
 import { getAccounts, createAccount, updateAccount, deleteAccount } from '../api/accountService';
 
 const accountTypes = ['CHECKING', 'SAVINGS', 'CREDIT_CARD', 'CASH', 'INVESTMENT', 'OTHER'];
-const currencies = ['USD', 'EUR', 'GBP', 'CAD', 'AUD', 'JPY'];
+const currencies = ['PHP', 'USD', 'EUR', 'GBP', 'CAD', 'AUD', 'JPY'];
 
-const emptyForm = { name: '', type: 'CHECKING', accountNumber: '', balance: '', currency: 'USD', status: 'ACTIVE' };
+const emptyForm = { name: '', type: 'CHECKING', accountNumber: '', balance: '', currency: 'PHP', status: 'ACTIVE' };
 
 export default function AccountsPage() {
   const [accounts, setAccounts] = useState([]);
@@ -47,7 +47,7 @@ export default function AccountsPage() {
       type: row.type || 'CHECKING',
       accountNumber: row.accountNumber || '',
       balance: row.balance ?? '',
-      currency: row.currency || 'USD',
+      currency: row.currency || 'PHP',
       status: row.status || 'ACTIVE',
     });
     setModalOpen(true);
@@ -87,7 +87,7 @@ export default function AccountsPage() {
   };
 
   const formatCurrency = (val) => {
-    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(val || 0);
+    return new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' }).format(val || 0);
   };
 
   const columns = [
@@ -124,7 +124,7 @@ export default function AccountsPage() {
   return (
     <div className="page">
       <div className="page__summary">
-        <FinancialCard icon="$" value={formatCurrency(totalBalance)} label="Total Balance" color="primary" />
+        <FinancialCard icon="₱" value={formatCurrency(totalBalance)} label="Total Balance" color="primary" />
       </div>
       <div className="page__header">
         <h2 className="page__subtitle">Manage Accounts</h2>

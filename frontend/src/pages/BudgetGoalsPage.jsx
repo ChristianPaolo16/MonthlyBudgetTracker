@@ -42,7 +42,7 @@ export default function BudgetGoalsPage() {
 
   useEffect(() => { fetchAll(); }, [fetchAll]);
 
-  const formatCurrency = (v) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(v || 0);
+  const formatCurrency = (v) => new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' }).format(v || 0);
 
   const getActualSpending = (categoryId) => {
     return actualExpenses

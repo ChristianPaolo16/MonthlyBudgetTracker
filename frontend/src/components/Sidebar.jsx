@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import logo from '../assets/FinTrack_logo.png';
 
 const navItems = [
   { path: '/', label: 'Dashboard', icon: '\u2302' },
@@ -27,7 +28,9 @@ export default function Sidebar() {
     <aside className={`sidebar ${collapsed ? 'sidebar--collapsed' : ''}`}>
       <div className="sidebar__header">
         <div className="sidebar__logo">
-          <div className="sidebar__logo-icon">MB</div>
+          <div className="sidebar__logo-icon">
+            <img src={logo} alt="Logo" />
+          </div>
           {!collapsed && (
             <div className="sidebar__logo-text">
               <span className="sidebar__logo-title">BudgetTracker</span>
