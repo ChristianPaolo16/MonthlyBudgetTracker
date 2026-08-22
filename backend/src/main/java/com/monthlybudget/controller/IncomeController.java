@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/income")
+@RequestMapping("/api/incomes")
 @CrossOrigin(origins = "http://localhost:5173")
 public class IncomeController {
 
