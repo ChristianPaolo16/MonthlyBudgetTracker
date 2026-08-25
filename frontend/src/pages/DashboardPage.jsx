@@ -26,7 +26,7 @@ export default function DashboardPage() {
         const month = now.getMonth() + 1;
 
         const [summaryRes, expenseSumRes, incomeSumRes, monthlyRes] = await Promise.allSettled([
-          getDashboardSummary(),
+          getDashboardSummary(month, year),
           getExpenseSummary(year, month),
           getIncomeSummary(year, month),
           getMonthlyExpenses(),

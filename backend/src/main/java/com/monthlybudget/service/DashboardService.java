@@ -13,9 +13,11 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 @Service
@@ -132,5 +134,27 @@ public class DashboardService {
         }
 
         return summaries;
+    }
+
+    public List<Map<String, Object>> getMonthlyExpensesTrend(Long userId) {
+        List<Expense> allExpenses = expenseRepository.findByUserId(userId);
+
+        Map<YearMonth, BigDecimal> monthlyTotals = new LinkedHashMap<>();
+        for (Expense expense : allExpenses) {
+            YearMonth ym = YearMonth.from(expense.getExpenseDate());
+            monthlyTotals.merge(ym, expense.getAmount(), BigDecimal::add);
+        }
+
+        YearMonth current = YearMonth.now();
+        List<Map<String, Object>> result = new ArrayList<>();
+        for (int i = 5; i >= 0; i--) {
+            YearMonth ym = current.minusMonths(i);
+            BigDecimal total = monthlyTotals.getOrDefault(ym, BigDecimal.ZERO);
+            Map<String, Object> entry = new LinkedHashMap<>();
+            entry.put("month", ym.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH));
+            entry.put("amount", total);
+            result.add(entry);
+        }
+        return result;
     }
 }
